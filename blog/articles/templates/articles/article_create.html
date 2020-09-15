@@ -1,0 +1,13 @@
+{% extends 'base_layouts.html' %}
+
+{% block content %}
+<div class="create-article">
+  <h2>Create an Awesome New article</h2>
+  <form class="site-form" action="{% url 'article:create' %}" method="post" enctype="multipart/form-data">
+    <!-- the ecryptype is needed when uploading something (in this case a thumbnail) -->
+    {% csrf_token %}
+    {{ form }}
+    <input type="Submit" value="Create">
+  </form>
+</div>
+{% endblock %}
