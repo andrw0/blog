@@ -20,7 +20,9 @@ def article_create(request):
         form = forms.CreateArticle(request.POST, request.FILES)
         #requested files need the request.FILES, since they dont go with a POST request
         if form.is_valid():
-            #save article to database
+            instance = form.save(commit = False)
+            instance.author = request.user
+            instance.save()
             return redirect("article:List")
     else:
         form = forms.CreateArticle()
